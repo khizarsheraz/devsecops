@@ -56,6 +56,7 @@ pipeline {
     stage('Build Artifact - Maven') {
       steps {
         sh "mvn clean package -DskipTests=true"
+        sh "hostname"
         archive 'target/*.jar'
       }
     }
@@ -235,21 +236,21 @@ pipeline {
  //      }
  //    }   
    
-      stage('Testing Slack - 1') {
-      steps {
-          sh 'exit 0'
-      }
-    }
+  //     stage('Testing Slack - 1') {
+  //     steps {
+  //         sh 'exit 0'
+  //     }
+  //   }
 
-   stage('Testing Slack - Error Stage') {
-      steps {
-          sh 'exit 0'
-      }
-    }
+  //  stage('Testing Slack - Error Stage') {
+  //     steps {
+  //         sh 'exit 0'
+  //     }
+  //   }
 
-  }
+  // }
 
-  post { 
+  // post { 
      //    always { 
      //      junit 'target/surefire-reports/*.xml'
      //      jacoco execPattern: 'target/jacoco.exec'

@@ -25,8 +25,7 @@ pipeline {
                         steps {
                             withDockerRegistry([credentialsId: "dockerhub", url: "https://hub.docker.com/repository/docker/khizarsheraz/devsecops/"]) {
                             sh 'printenv'
-                            sh 'docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
-                            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                            sh 'sudo docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
                             sh 'docker push khizarsheraz/devsecops:""$GIT_COMMIT""'
                             } 
                         }

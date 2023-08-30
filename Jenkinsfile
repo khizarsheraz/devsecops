@@ -23,11 +23,11 @@ pipeline {
 
                     stage('Docker Build and Push') {
                         steps {
-                            withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+                            
                             sh 'printenv'
                             sh 'sudo docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
                             sh 'docker push khizarsheraz/devsecops:""$GIT_COMMIT""'
-                            }
+                            
                         }
                         }        
         } 

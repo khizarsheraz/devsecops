@@ -28,6 +28,18 @@ pipeline {
 
                             } 
                         }
+
+
+                    stage("kUBERNETES DEPLOYMENT - dEV"){
+                        steps{
+                            withKubeconfig([credentialsId: 'kubeconfig']){
+                              sh "sed -i 's#replace#khizarsheraz/devsecops:${GIT COMMIT}#g' k8s deployment service.yaml"
+                              
+                              sh "kubecti apply -f k8s_deployment_service.yaml"
+
+                            }
+                        }
+                    }
                         
                 }        
         } 

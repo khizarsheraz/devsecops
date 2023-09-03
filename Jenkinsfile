@@ -33,7 +33,7 @@ pipeline {
                     stage("kUBERNETES DEPLOYMENT - dEV"){
                         steps{
                             withKubeConfig([credentialsId: 'kubeconfig']){
-                              sh "sed -i 's#replace#khizarsheraz/devsecops:${GIT_COMMIT}#g' k8s deployment service.yaml"
+                              sh "sed -i 's#replace#khizarsheraz/devsecops:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
                               
                               sh "kubecti apply -f k8s_deployment_service.yaml"
 

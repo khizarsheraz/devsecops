@@ -23,7 +23,7 @@ pipeline {
 
                     stage('Docker Build and Push') {
                         steps {
-                            sh 'sudo -i'
+                            sh 'printenv'
                             sh 'docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
 
                             } 

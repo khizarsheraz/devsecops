@@ -23,7 +23,7 @@ pipeline {
 
                     stage('Docker Build and Push') {
                         steps {
-                            withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+                            withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                             sh 'printenv'
                             sh 'sudo docker build -t khizarsheraz/devsecops:"khizar_image" .'
                             sh 'docker push khizarsheraz/devsecops:"khizar_image"'

@@ -20,7 +20,7 @@ spec:
         emptyDir: {}
       serviceAccountName: default
       containers:
-      - image: replace
+      - image: khizarsheraz/devsecops:${GIT_COMMIT}
         name: devsecops-container
         volumeMounts:
         - mountPath: /tmp

@@ -24,7 +24,7 @@ pipeline {
                     stage('Docker Build and Push') {
                         steps {
                             sh 'printenv'
-                            sh 'sudo docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
+                            sh 'sudo docker build -t khizarsheraz/devsecops:"khizar_image" .'
 
                             } 
                         }
@@ -33,7 +33,6 @@ pipeline {
                     stage("kUBERNETES DEPLOYMENT - dEV"){
                         steps{
                             withKubeConfig([credentialsId: 'kubeconfig']){
-                              sh "sed -i 's#replace#khizarsheraz/devsecops:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
                               
                               sh "kubectl apply -f k8s_deployment_service.yaml"
 

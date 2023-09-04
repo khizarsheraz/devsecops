@@ -1,7 +1,5 @@
 FROM adoptopenjdk/openjdk8:alpine-slim
-EXPOSE 8080
+EXPOSE 9999
 ARG JAR_FILE=target/*.jar
-RUN addgroup -S pipeline && adduser -S k8s-pipeline -G pipeline
-COPY ${JAR_FILE} /var/lib/docker/overlay2/6w59smhi907rdg5ktt6lccllr/diff/home/k8s-pipeline/app.jar
-USER k8s-pipeline
-ENTRYPOINT ["java","-jar","/home/k8s-pipeline/app.jar"]
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","app.jar"]

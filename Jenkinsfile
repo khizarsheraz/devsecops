@@ -26,6 +26,7 @@ pipeline {
                             withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                             sh 'printenv'
                             sh 'sudo docker build -t khizarsheraz/devsecops:"khizar_image" .'
+                            sh 'docker login -u "khizarsheraz" -p "Rocker1234" docker.io'
                             sh 'sudo docker push khizarsheraz/devsecops:"khizar_image"'
                             } 
                         }

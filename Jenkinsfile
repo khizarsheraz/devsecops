@@ -25,9 +25,8 @@ pipeline {
                         steps {
                             withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                             sh 'printenv'
-                            sh 'sudo docker build -t khizarsheraz/devsecops:"khizar_image" .'
-                            sh 'docker login -u "khizarsheraz" -p "Rocker1234" docker.io'
-                            sh 'sudo docker push khizarsheraz/devsecops:"khizar_image"'
+                            sh 'sudo docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
+                            sh 'docker push khizarsheraz/devsecops:""$GIT_COMMIT""'
                             } 
                         }
                     }
@@ -35,8 +34,8 @@ pipeline {
                     stage("kUBERNETES DEPLOYMENT - dEV"){
                         steps{
                             withKubeConfig([credentialsId: 'kubeconfig']){
-                              
-                              sh "kubectl apply -f k8s_deployment_service.yaml"
+                            sh "sed -i 's#replace#${imageName}#g' k8s_PROD-deployment_service.yaml" 
+                            sh "kubectl apply -f k8s_deployment_service.yaml"
 
                             }
                         }

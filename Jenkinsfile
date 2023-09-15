@@ -25,8 +25,8 @@ pipeline {
                         steps {
                             withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
                             sh 'printenv'
-                            sh 'sudo docker build -t siddharth67/numeric-app:""$GIT_COMMIT"" .'
-                            sh 'docker push siddharth67/numeric-app:""$GIT_COMMIT""'
+                            sh 'sudo docker build -t khizarsheraz/devsecops:""$GIT_COMMIT"" .'
+                            sh 'docker push khizarsheraz/devsecops:""$GIT_COMMIT""'
                             } 
                         }
                     }
@@ -34,7 +34,7 @@ pipeline {
                     stage("kUBERNETES DEPLOYMENT - dEV"){
                         steps{
                             withKubeConfig([credentialsId: 'kubeconfig']){
-                            sh "sed -i 's#replace#siddharth67/numeric-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml" 
+                            sh "sed -i 's#replace#khizarsheraz/devsecops:${GIT_COMMIT}#g' k8s_deployment_service.yaml" 
                             sh "kubectl apply -f k8s_deployment_service.yaml"
 
                             }
